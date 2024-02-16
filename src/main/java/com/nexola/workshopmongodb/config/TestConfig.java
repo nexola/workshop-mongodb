@@ -1,6 +1,8 @@
 package com.nexola.workshopmongodb.config;
 
+import com.nexola.workshopmongodb.models.entities.Post;
 import com.nexola.workshopmongodb.models.entities.User;
+import com.nexola.workshopmongodb.repositories.PostRepository;
 import com.nexola.workshopmongodb.repositories.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +16,20 @@ import java.util.Arrays;
 public class TestConfig {
 
     @Autowired
-    private UserRepository repository;
+    private PostRepository postRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostConstruct
     public void init() {
-        repository.deleteAll();
+        userRepository.deleteAll();
+        postRepository.deleteAll();
 
         User maria = new User(null, "Maria Brown", "maria@gmail.com");
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Red", "bob@gmail.com");
-        repository.saveAll(Arrays.asList(maria, alex, bob));
+
+        userRepository.saveAll(Arrays.asList(maria, alex, bob));
     }
 }
