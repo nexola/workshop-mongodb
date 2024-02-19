@@ -5,10 +5,10 @@
 Projeto CRUD com Restful, Spring Boot e banco de dados Mongo, possuindo implementação de consultas personalizadas com Spring Data e MongoRepository.
 
 ## Modelo de domínio
-![2](https://github.com/nexola/workshop-spring-boot-mongodb/assets/103954392/6dc89106-f453-4d68-88c5-3c7049b5fc8e)
+![image](https://github.com/nexola/workshop-mongodb/assets/103954392/c901a97b-1af3-4bab-9674-a819cc4cf99c)
 
-## Associações e retorno em JSON
-![3](https://github.com/nexola/workshop-spring-boot-mongodb/assets/103954392/e4d0e3e7-443d-4854-bd5a-3c54e1408de0)
+## JSON
+![json](https://github.com/nexola/workshop-mongodb/assets/103954392/718db40d-8e05-42b1-881e-82b0e195fd1d)
 
 # Tecnologias utilizadas
 - Java
