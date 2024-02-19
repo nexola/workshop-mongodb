@@ -42,4 +42,10 @@ public class UserController {
         UserDTO newDTO = service.update(id, dto);
         return ResponseEntity.ok(newDTO);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
