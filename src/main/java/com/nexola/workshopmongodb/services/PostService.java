@@ -27,7 +27,7 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public List<PostDTO> findByTitle(String text) {
-        List<Post> list = repository.findByTitleContainingIgnoreCase(text);
+        List<Post> list = repository.searchTitle(text);
         if (list.isEmpty()) {
             throw new ResourceNotFoundException("Nenhum post encontrado");
         }
