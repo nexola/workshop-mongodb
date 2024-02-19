@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PostService {
 
@@ -20,5 +23,14 @@ public class PostService {
                 () -> new ResourceNotFoundException("Recurso não encontrado")
         );
         return new PostDTO(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostDTO> findByTitle(String text) {
+        List<Post> list = repository.findByTitleContainingIgnoreCase(text);
+        if (list.isEmpty()) {
+            throw new ResourceNotFoundException("Nenhum post encontrado");
+        }
+        return list.stream().map(PostDTO::new).collect(Collectors.toList());
     }
 }
