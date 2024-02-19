@@ -1,6 +1,8 @@
 package com.nexola.workshopmongodb.controllers;
 
+import com.nexola.workshopmongodb.models.dto.PostDTO;
 import com.nexola.workshopmongodb.models.dto.UserDTO;
+import com.nexola.workshopmongodb.models.entities.Post;
 import com.nexola.workshopmongodb.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,5 +49,11 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable String id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<PostDTO>> getUserPosts(@PathVariable String id) {
+        List<PostDTO> posts = service.getUserPosts(id);
+        return ResponseEntity.ok(posts);
     }
 }

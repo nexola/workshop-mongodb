@@ -1,6 +1,8 @@
 package com.nexola.workshopmongodb.services;
 
+import com.nexola.workshopmongodb.models.dto.PostDTO;
 import com.nexola.workshopmongodb.models.dto.UserDTO;
+import com.nexola.workshopmongodb.models.entities.Post;
 import com.nexola.workshopmongodb.models.entities.User;
 import com.nexola.workshopmongodb.repositories.UserRepository;
 import com.nexola.workshopmongodb.services.exceptions.DatabaseException;
@@ -63,6 +65,14 @@ public class UserService {
         catch (DataIntegrityViolationException e) {
             throw new DatabaseException("Falha de integridade referencial");
         }
+    }
+
+    public List<PostDTO> getUserPosts(String id) {
+        User user = repository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Recurso não encontrado")
+        );
+
+        return user.getPosts().stream().map(PostDTO::new).collect(Collectors.toList());
     }
 
     private void copyDtoToEntity(UserDTO dto, User entity) {
